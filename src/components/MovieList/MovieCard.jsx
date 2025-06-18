@@ -1,19 +1,25 @@
 import React from 'react'
 import './MovieCard.css'
+import Star from '../../assets/star.png'
 
 const MovieCard = ({movie}) => {
   return 
-<a href="" className='movie_card'> <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/adventure-movie-poster-template-design-7b13ea2ab6f64c1ec9e1bb473f345547_screen.jpg?ts=1636999411" 
+<a href="" className='movie_card'> <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 alt="" className='movie_poster' />
     <div className='movie_details'>
         <h3 className='movie_details_heading'>{movie.original_title}</h3>
-        <p className='movie_date_rate'>{movie.release_date}</p>
-        <p className='movie_year'></p>
+        <div className='align_center movie_date_rate'>{movie.release_date}
         <p className='align_center'>
-            8.0
+            {movie.rate_average}
             <img src={Star} alt="rating icon"
             className='card_emoji' />
         </p>
+    </div>
+    <p className='movie_description'>
+    {movie.overview.length > 100 ?
+        `${movie.overview.substring(0, 100)}...` : movie.overview}
+
+    </p>
     </div>
 
 </a>
