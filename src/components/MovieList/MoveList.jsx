@@ -1,9 +1,25 @@
-import React from 'react'
+import React, {  useEffect, useState } from 'react'
 import './MovieList.css'
 import Fire from '../../assets/fire.png'
 import MovieCard from './MovieCard'
 
 const MoveList = () => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    fetchMovies();
+  }, [])
+
+  const fetchMovies = async () => {
+    try {
+      const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=434c866b4474f9a3c92b7973d0f32654'); // Replace with actual API endpoint
+      const data = await response.json();
+          console.log(data); // Add this line
+
+      setMovies(data.results);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+    }
+  }
   return (
    <section className='movie_list'>
     <header  className='align_center movie_list_header'>
@@ -30,7 +46,12 @@ const MoveList = () => {
     </header>
 
     <div className='movie_cards'>         
-      <MovieCard/>
+      {movies.map((movie) => (
+        <MovieCard 
+          key={movie.id}
+          movie = {movie}
+        />
+      ))}
     </div>
 
    </section>
