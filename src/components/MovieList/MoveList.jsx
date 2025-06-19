@@ -1,8 +1,7 @@
 import React, {  useEffect, useState } from 'react'
 import './MovieList.css'
 import Fire from '../../assets/fire.png'
-import MovieCard from './MovieCard'
-
+import MovieCard from './MovieCard.jsx'
 const MoveList = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -27,7 +26,7 @@ const MoveList = () => {
 
         <div className='align_center movie_list_fs'>
             <ul className='align_center movie_filter'>
-                <li className='movie_filter_item active'>8+ Star</li>
+                <li className='movie_filter_item '>8+ Star</li>
                 <li className='movie_filter_item'>7+ Star</li>
                 <li className='movie_filter_item'>6+ Star</li>
                 
@@ -45,12 +44,13 @@ const MoveList = () => {
 
     </header>
 
-    <div className='movie_cards'>         
+    <div className='movie_cards'>   
       {movies.map((movie) => (
         <MovieCard 
           key={movie.id}
           movie = {movie}
         />
+        
       ))}
     </div>
 
